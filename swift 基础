@@ -3,10 +3,36 @@ swift里，变量使用var 来定义； 常量使用let定义；swift里无需�
 swift里的语句无需分号。
 
 相同类型的变量可使用＋直接连接；不同类型的变量，可使用＝“\(var a) \(var b)” 连接。
+------
+数组：
+直接定义并用中括号即可，例如 var a＝［“hello”，1231，1231.123］；空数组 var a=[类型]()
+遍历数组: 
+for i in 0...100{
+print(a[i])
+//无需i＋＋
+}
+OR
 
-数组：直接定义并用中括号即可，例如 var a＝［“hello”，1231，1231.123］；空数组 var a=[类型]()
+for value in a{
+print("\(value)")
 
-字典：定义与数组类似，例如var a=["key1":"xxx","key2":"xxx"]; 
+} 
+
+
+
+-------
+字典：
+定义与数组类似，例如var a=["key1":"xxx","key2":"xxx"]; 
 对字典进行赋值： a["key"]="xxx"；
 打印字典某key数据：print（a["key"]）即可。
+遍历字典：
+var dict=[" ":" "," ":" "]
+for(key,value)in dict             //key &value 可随意自定
+{print("\(key),\(value)")
+}
 
+
+－－－－－－－－
+字符串长度：String.characters.count 
+－－－－－
+a_!=_b//必须有两个空格才能识别
