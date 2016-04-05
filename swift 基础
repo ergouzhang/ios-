@@ -34,5 +34,12 @@ for(key,value)in dict             //key &value 可随意自定
 
 －－－－－－－－
 字符串长度：String.characters.count 
+
+识别非空字符串：
+var a:String?="xxx" //非定型字符串
+if let b=a{
+print(b)
+}
+
 －－－－－
 a_!=_b//必须有两个空格才能识别
