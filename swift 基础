@@ -43,3 +43,21 @@ print(b)
 
 －－－－－
 a_!=_b//必须有两个空格才能识别
+
+
+--------
+函数
+func 来新建函数：
+func name(name:String)->String {    }
+
+-----
+
+类
+class a{func c(){} }
+继承：class b:a{}
+调用类中的方法: var d=a()  
+d.c()
+
+构造方法使用
+var data:String
+init(data:String){self.data=data}
