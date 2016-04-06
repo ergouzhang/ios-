@@ -1,0 +1,11 @@
+Ios的storyboard的概念与android的activity类似，但ios中的storyborad可以直接通过control＋鼠标尖头进行连接并启动。
+
+－－－－－
+添加图片：
+创建图片区域和代码的关键：control＋鼠标拖拽图片区域到UIViewController中，创建一个变量im。
+
+在viewDidLoad中，给im赋值：im.image=UIImage(named:"图片名")
+
+或者直接在ib中给图片赋值。
+－－－－－－－
+
