@@ -1,0 +1,13 @@
+
+－－－－
+（1）将创建的TableViewController与代码关联 // 每个storybroad都要与.swift关联
+（2）定义cell的indentifier     //用于传入cell的id
+（3）定义label的tag            //
+（4）在.swift中定义列数和section数
+（5）将 override func tableView（）｛｝函数打开，
+传入 cell 的indentifier；
+并在return语句前给label赋值：
+var label＝cell.viewWitheTag(tag) as! UILable
+label.text="xxxxx"
+
+即可.
