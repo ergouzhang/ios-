@@ -1,0 +1,31 @@
+在ViewController.storyborad中定义一个tableview，并拖入tableview cell。
+新建一个tableview.swift扩展自UItableView类，关联tableview和tableview.swift，设置相应cell的deindentifier和label的tag值。
+
+在swift中，编辑以下代码：
+
+class table:UITableView,UITableViewDataSource{
+
+required init?(coder aDecoder:NSCoder)    //tableview的初始化
+{
+super.init(coder:aDecoder)
+self.dataSource=self
+}
+
+
+override func numberOfRowsInSection(section:Int)->Int
+{
+return 1
+}
+
+
+func tableView(tableView:UItableView,cellForRowAtIndexPath indexPath:NSIndexPath)->UITableViewCell   //tableView的执行函数
+{
+
+
+}
+
+
+
+
+
+}
