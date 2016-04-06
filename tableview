@@ -3,9 +3,10 @@
 
 在swift中，编辑以下代码：
 
-class table:UITableView,UITableViewDataSource{
+class table:UITableView,UITableViewDataSource       //继承自UITableVIew &UITableViewDataSource
+{ 
 
-var data=["","",""]      //定义要显示的数组
+var data=["  ","  ","  "]       //定义要显示的数组
 required init?(coder aDecoder:NSCoder)    //tableview的初始化
 {
 super.init(coder:aDecoder)
