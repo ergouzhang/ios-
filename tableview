@@ -24,8 +24,7 @@ func tableView(tableView:UItableView,cellForRowAtIndexPath indexPath:NSIndexPath
 {
 var cell=tableView.dequeueReusableCellWithIdentifier("传入定义的cell的indentifier值")! as UITableViewCell   //获得cell值
 
-var label=cell.viewWithTag(传入label 的tag值) as! UILabel       //获得label值
-
+var label=cell.viewWithTag(传入label 的tag值) as! UILabel       //获得label值;  as! 表示强制类型转换，若转换不成功则报错。as?
 lable.text=data[indexPath.row]     //传入数组参数
 
 return cell
