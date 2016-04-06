@@ -5,6 +5,7 @@
 
 class table:UITableView,UITableViewDataSource{
 
+var data=["","",""]      //定义要显示的数组
 required init?(coder aDecoder:NSCoder)    //tableview的初始化
 {
 super.init(coder:aDecoder)
@@ -20,11 +21,18 @@ return 1
 
 func tableView(tableView:UItableView,cellForRowAtIndexPath indexPath:NSIndexPath)->UITableViewCell   //tableView的执行函数
 {
+var cell=tableView.dequeueReusableCellWithIdentifier("传入定义的cell的indentifier值")! as UITableViewCell   //获得cell值
 
+var label=cell.viewWithTag(传入label 的tag值) as! UILabel       //获得label值
 
+lable.text=data[indexPath.row]     //传入数组参数
+
+return cell
 }
 
-
+func tableView(tableView:UITableView,numberOfRowInSection section:Int)->Int
+{return 3        //定义栏目数
+}
 
 
 
