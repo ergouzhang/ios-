@@ -9,3 +9,22 @@ Ios的storyboard的概念与android的activity类似，但ios中的storyborad可
 或者直接在ib中给图片赋值。
 －－－－－－－
 
+button事件：
+
+（1）在ib中拖入button和label
+（2）在.swift中进行编辑：
+class ViewController:UIViewController
+{  @IBoulet var label:UILabel!    //  UILabel！ 隐式chaifeng
+@IBAction func btn()        //在ib中绑定button和btn
+{
+label.text="nihao"
+
+}                            //在viewdidload之前定义 button才能在ib中绑定
+override func viewDidLoad(){
+super.viewDidLoad()
+}
+
+
+
+
+}
