@@ -10,4 +10,6 @@
 var label＝cell.viewWitheTag(tag) as! UILable
 label.text="xxxxx"
 
+
+//此方法使得每行值都一样。
 即可.
