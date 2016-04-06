@@ -22,9 +22,9 @@ return 1
 
 func tableView(tableView:UItableView,cellForRowAtIndexPath indexPath:NSIndexPath)->UITableViewCell   //tableView的执行函数
 {
-var cell=tableView.dequeueReusableCellWithIdentifier("传入定义的cell的indentifier值")! as UITableViewCell   //获得cell值
+var cell=tableView.dequeueReusableCellWithIdentifier("传入定义的cell的indentifier值")! as UITableViewCell   //获得cell值;此处的as转换无意义，前面类型已经是UITableViewCell类型，但此类型为optinal，需用！修饰确定。
 
-var label=cell.viewWithTag(传入label 的tag值) as! UILabel       //获得label值;  as! 表示强制类型转换，若转换不成功则报错。as?
+var label=cell.viewWithTag(传入label 的tag值) as! UILabel       //获得label值;  as! 表示强制类型转换，若转换不成功则报错。as? 为不强制转换，若出错则返回nil。
 lable.text=data[indexPath.row]     //传入数组参数
 
 return cell
