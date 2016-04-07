@@ -1,0 +1,14 @@
+在viewcontroller向含有nib文件的viewcontroller2中传递参数
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+在ViewController.swift：
+@IBAtion fund btn(sender:AnyObject)
+{
+
+let vc=ViewController2(nibName:”ViewController2”,bundle:nil)
+
+vc.data=input.text   //data在ViewController2中已经定义，将textfield的值传递给vc.data
+
+self.presentViewController(vc,animated:true,completion:nil) //启动vc
+
+}
+
