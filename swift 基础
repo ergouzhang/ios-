@@ -13,9 +13,12 @@ print(a[i])
 }
 OR
 
-for value in a{
-print("\(value)")
+for value in a    //value表示数组a中按序的值
+{
 
+if value>0{
+print("\(value)")
+}
 } 
 
 
