@@ -14,7 +14,7 @@ self.dataSource=self
 }
 
 
-override func numberOfRowsInSection(section:Int)->Int
+ func numberOfSectionInTableView(section:Int)->Int
 {
 return 1
 }
@@ -37,3 +37,67 @@ func tableView(tableView:UITableView,numberOfRowInSection section:Int)->Int
 
 
 }
+——————－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+使用plist导入tableview     
+  //  tableview首先调用numberOfSectionInTableView 获取section值，然后依据每个section，获取row的值，并初始化此tableview的格式，此时已有相应的section及row格。最后再依次将格子赋值。
+   //相当于 初始化 section1&section2 ->建立section1里的row，建立section2里的row -> section1里的row1，2，3。。。赋值 ；section2里的row 1，2，3赋值。
+
+
+新建plist文件，root设置为dictionary类型，并新建arry类型的label1，2，3及string类型的子项。
+
+在tableView的.swift文件中：
+
+
+class table:UITableView,UITableViewDataSource       //继承自UITableVIew &UITableViewDataSource
+{ 
+
+var data：NSDictionary！      //定义要显示的字典
+required init?(coder aDecoder:NSCoder)    //tableview的初始化
+{
+super.init(coder:aDecoder)
+self.dataSource=self
+data=NSDictionary(contentsOfURL:NSBundle.mainBundle().URLForResource(“List”,withExtension:”plist”))   //将新建的list.plist赋给data
+
+}
+
+
+ func numberOfSectionInTableView(section:Int)->Int
+{
+return data.count   // .count 跟在dic类型后，表示计算dic类型入口的数目，即dic的key数。
+}
+
+
+
+func tableView(tableView:UITableView,numberOfRowInSection section:Int)->Int
+{return  ( data.allValues[section] as! NSArray).count 	//.ount跟在arry后表示计算数组里的元素数；  
+								//.allValues: 新建一个数组，包含data字典里的数据				
+
+									
+
+}
+
+
+func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return data.allKeys[section] as! String           //.allKeys：新建一个数组，包含data字典里的key值
+    }
+
+
+
+
+func tableView(tableView:UItableView,cellForRowAtIndexPath indexPath:NSIndexPath)->UITableViewCell   
+{
+var cell=tableView.dequeueReusableCellWithIdentifier("传入定义的cell的indentifier值")! as UITableViewCell   
+var label=cell.viewWithTag(传入label 的tag值) as! UILabel     
+lable.text=(data.allValues[indexPath.section] as! NSArray).objectAtIndex(indexPath.row) as! String   //.objectAtIndex :返回某index的值
+
+													  //
+
+return cell
+}
+
+
+
+
+}
+
+
