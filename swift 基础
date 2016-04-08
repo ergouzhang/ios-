@@ -78,4 +78,9 @@ optional类型：
 
 optional类型的不初始化则为nil，非optinaol变量需初始化。
 optinonal类型的变量需要经过显式拆包（！）才能使用。
+－－－－－－－－－－－
+init(变量外部名 变量内部名：类型) 
+
+
+
 

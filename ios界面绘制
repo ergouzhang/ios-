@@ -1,0 +1,89 @@
+绘制线条
+－－－－－－－－－
+（1）新建一个cocoatouchclass，继承自UIView。
+（2）将storyboard里的view绑定为新建的cocoatouchclass
+（3）在cocoatouchclass中，打开drawrect的注释。 //无需初始化也可运行
+
+   var context=UIGraphicsGetCurrentContext()  //获取到当前的context
+
+CGContextMoveToPoint(context, x0, y0)  //画笔移动到（x，y）
+CGContextAddLineToPoint(context,x1,y1)  //连接（x0，y0）和（x1，y1）
+
+CGContextSetRGBStrokeColor(context,r,g,b,alpha) //设置线条颜色
+CGContextSetLineWidth(context,x) //设置线条宽度为x
+
+CGContextStrokePath(context) //显示连线 
+
+－－－－－－－－－－－
+
+绘制矩形
+
+CGContextAddRect(context,CGRect(x:,y:,width:,height:))  //CGRect()为struct类型，传递的参数实际上是初始化
+CGContextSetRGBFillColor(context,r,g,b,alpha) //填充颜色
+CGContextSetRGBStrokeColor(context,r,g,b,alpha) //线条颜色
+CGContextFillPath(context)  //填充矩形
+CGContextStrokePath(context)  //只绘制边框
+
+
+
+
+－－－－－－－－－－－
+
+绘制圆形
+
+CGContextAddArc(context,x,y,radius,strangle,entangle,clockwise)  //绘制圆弧
+CGContextAddEllipseInRect(context,CGRect(x:,y:,width:,height:)) //绘制椭圆
+
+
+－－－－－－－－－－－－－－－－
+
+
+ 绘制图片
+
+var im:CGImage=(UIImage(named:” .jpg”)?.CGImage)!  //获取图片地址
+
+CGContextSaveGState(context)     //保存当前坐标状态
+CGContextScaleCTM(context,1,-1)  //图片坐标与view坐标y轴相反，需反转坐标轴
+CGContextDrawImage(context,CGRect( ),im) 
+CGContextRestoreGState(context)
+—————————————————
+
+画板小程序
+（1）新建一个继承自uiView类的类
+（2） class board: UIView
+{  var path=CGPathCreateMutable()   //新建一个图形路径
+override func touchesBegan(touches:Set<UITouch>,withEven event:UIEvent?)
+{ 
+var p=(touches as NSSet).anyObject()!.locationInVIew(self) //获取触摸的坐标
+
+CGPathMoveToPoint(pain,nil,p.x,p.y)
+
+}
+
+override func touchesMoved(touches:Set<UITouch>,withEvent event:UIEvent?)
+{
+var p=(touches as NSSet).anyObject()!>locationInView(self)
+
+CGPathAddLineToPath(path,nil,p.x,p.y)    
+
+setNeedsDisplay()
+
+}
+
+
+override func drawRect(rect:CGRect)
+
+{ let context=UIGraphicsGetCurrentContext()
+CGContextAddPath(context,path)
+CGContextStrokePath(contex)
+
+}
+
+
+
+
+}
+
+
+
+

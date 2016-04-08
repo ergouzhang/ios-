@@ -11,4 +11,16 @@ vc.data=input.text   //data在ViewController2中已经定义，将textfield的�
 self.presentViewController(vc,animated:true,completion:nil) //启动vc
 
 }
+－－－－－－－－
 
+不定义nib文件实现跳转：
+@IBAction func btn(sender:AnyObject){
+let  mainStoryboard=UIStoryboard(name:"Main",bundle: NSBundle.mainBundle())
+        
+let vc:UIViewController=mainStoryboard.instantiateViewControllerWithIdentifier("next")
+        
+     self.presentViewController(vc, animated: true, completion: nil)
+        
+    
+    
+    }
