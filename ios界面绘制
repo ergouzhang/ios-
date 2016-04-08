@@ -75,7 +75,7 @@ override func drawRect(rect:CGRect)
 
 { let context=UIGraphicsGetCurrentContext()
 CGContextAddPath(context,path)
-CGContextStrokePath(contex)
+CGContextStrokePath(context)
 
 }
 
@@ -84,6 +84,42 @@ CGContextStrokePath(contex)
 
 }
 
+－－－－－－－－－－－－－－
+
+创建圆形进度条
+
+(1)创建一个新的UIView类型的class:jindutiao，并编辑以下代码：
+ class jindutiao:UIVIew{
+
+var pro:CGFloat=0   //定义圆形进度条的圆弧数据
+public func setpro(progress:CGFloat){
+pro=progress
+SetNeedsDisplay()   // 每当执行此方法，便调用后面的 drawRect()方法重新绘图
+}
+
+override func drawRect(rect:CGRect)
+{ var r=rect.width/2  
+
+ CGContextAddArc(context,r,r,r,0,3.15*2*pro,0)
+CGContextAddLintToPoint(context,r,r)
+CGContextSetRGBFillColor(context,1,0,0,1)
+CGContextFillPath(context)
+}
+}
+
+(2)在ViewController.swift中：
+var i:CGFLoat=0
+let vc=jindutiao(frame:CGRect(X：，y：，width：，height：))  //vc是pro类的一个实例，并进行初始化，制作一个rect区域以显示jingdutiao的view
+
+@IBAtion btn(sender:AnyObject){
+i=i+0.1
+vc.setpro(i)   //点击按钮，进度条＋0.1
+}
 
 
+override ViewDidLoad(){
+super.ViewDidLoad()
+self.view.addSubView(vc)  //添加一个子View; 注意，.addSubView()只能被UIView类型调用，故用self.view来调用。 
+
+}
 
