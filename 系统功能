@@ -1,0 +1,59 @@
+调用网页：
+UIApplication.sharedApplication().openURL(NSURL(string:”http://www.baidu.com”))  //网址www.baidu.com可调用textfield直接收入
+
+
+－－－－－－－－－－－－－
+定义一个自定协议并执行显示：
+（1）在info.plist中，新建一个子项： URL types-Item 0-URL Schemes－item0 赋值为zwj  //zwj表示通过URL查找的名称
+（2）新建一个带有nib文件的viewController2，在nib中添加一个label用于显示主类传递的数据。
+（3）在AppDelegat中，新建一个方法：
+func application(application:UIApplication,handleOpenURL url:NSURL)->Bool
+{  let vc=viewController2(nibName:”zwj”,bundle:nil)   //实例化viewController2为vc
+
+window?.addSubView(vc.view)
+
+vc.label.text=“\(url)”
+
+return true
+
+
+}
+(4)在主方法中定义一个btn，点击btn执行：
+UIApplication.sharedApplication().openURL(NSURL(string:”zwj://xxxx”))   //必须遵循一个url的写法，zwj为查找协议名。 但最后会显示“”内的全部内容。
+
+
+
+－－－－－－－－－－－－－－－
+
+调用系统相册的图片并显示
+
+(1)ViewController中新建一个ban和image view.
+（2） 在ViewController.swift中：
+
+class ViewController :UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+@IBoutlet var image:UIimageView!
+
+@IBAtion btn(sender:AnyObjtect){
+
+let c=UIImagePickerController()  //UIImagePickerController类的实例化
+
+self.presentViewController(c,animated:true,completion:nil)
+
+c.delegate=self      //delegate识别图片是否被选取
+
+
+
+}
+func imagePickerController(picker:UIImagePickerController, didFinishPickingMediaWithInfo info:[String:AnyObject])
+{ image.image=info[UIImagePickerControllerOriginaImage]as!UIImage   // info[] :一个含有图片数据的字典 ；  UIImagePickerControllerOriginaImage 是一个String类型
+
+picker.dissmissViewControllerAnimated(true,completion:nil)  //结束选择
+
+
+}
+
+
+
+
+
+}
