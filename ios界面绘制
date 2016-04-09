@@ -122,4 +122,48 @@ super.ViewDidLoad()
 self.view.addSubView(vc)  //添加一个子View; 注意，.addSubView()只能被UIView类型调用，故用self.view来调用。 
 
 }
+－－－－－－－－－－－－－－－－
+实现两个图像view的点击跳转
+(1)将两个ImageView框体拖进View Controller Scene栏，并绑定相应图片，并在swift中创建绑定相应变量值。
+(2)在VIewController.swift中，编辑代码：
+@IBOutlet var im1:UIImageView!   //已绑定相应图片
+@IBOutlet var im2:UIImageView!
 
+
+override fun viewDidLoad{
+self.view.addSubView(im1)    //首先呈现image1
+}
+
+func complete(v:Bopl){}
+override func touchesBegan(touches:Set<UITouch>,withEvent event:UIEvent?)
+{ 
+UIView.transitionFromView(im1,toView:im2,duration:1.0,options:UIViewAnimationOptions.xxxx,completion:complete)   //options:动画效果； completion：完成后执行的方法名
+
+
+
+}
+
+－－－－－－－－－－－
+设置单个图像的动画效果
+
+(1)拖一个ImageView到ViewControllerScene里，并绑定图片及相应变量:im1
+(2) override viewDidLoad{
+super.viewDidLoad()
+
+self.view.addSubView(im1)     //呈现view
+} 
+
+
+override func touchesBegan(touches:Set<UITouch>,withEvent event:UIEvent?)
+{
+UIView.transitonWithView(im1,duration:1.0,options:UIViewAnimationOptions.TransitionNone, animations: anim,completion:comp)  //animations:调用自定的属性呈现
+
+}
+
+func anim(){
+im.alpha=0
+im.center=CGPoint(x:,y:)  
+
+}
+
+func comp(v:Bool){}
