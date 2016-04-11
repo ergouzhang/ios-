@@ -1,0 +1,77 @@
+在程序目录新建一个txt文档并保存数据
+var sp=NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DoucumentDirectory,NSSearchPathDomainMask.AllDomainsMask,true)   //NSSearchPathForDirectoriesInDomains（）为新建一个路径
+
+if sp.count>0{
+
+var url=NSURL(fileURLWithPath:”\(sp[0])/data.txt”)   //新建一个txt，路经存储在sp[0]内；
+
+print[sp[0]]   //输出路经
+
+var data=NSMutableDate()   // NSData为静态data，NSMutable为动态data
+data.appendData(“hello world”.dataUsingEncoding(NSUTF8StringEncoding,allowLossyConversion:true)!)   //添加数据到data
+
+data.writeToFile(url.path!,atomically:true)   ／／将data添加到txt
+
+print(“end”)
+
+}
+
+－－－－－－－－－－－－－
+读取文件上面创建的txt的信息
+var data=NSData(contentsOfFile:url.path)   //得到路径信息
+var str=NSString(data:data,encoding:NSUTF8StringEncoding)
+print(str)
+
+－－－－－－－－－－－－－－
+
+
+用户首选项数据
+var ud=NSUserDefault.standardUserDefaults()   
+ud.setObject(“”,forKey:”data”)
+
+
+用户首选项读取
+
+var data=ud.objectForKey(“data”)
+
+
+
+
+－－－－－－－－－－
+
+XML解析
+class ViewController: UIViewController,NSXMLParserDelegate {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        var parser=NSXMLParser(contentsOfURL: NSBundle.mainBundle().URLForResource("File", withExtension: "xml")!)
+        parser!.delegate=self
+        
+        parser?.parse()
+        
+        
+        
+        
+    }
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+        if elementName=="person"
+        {if let age=attributeDict["age"]
+            {
+            print(age)}
+        }
+    }
+
+    func parser(parser: NSXMLParser, foundCharacters string: String) {
+       // print(string)
+        
+        var str=string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        
+        if str != ""{
+        
+        print(str)}
+        
+        
+
+
+
