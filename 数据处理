@@ -72,6 +72,50 @@ class ViewController: UIViewController,NSXMLParserDelegate {
         print(str)}
         
         
+－－－－－－
+创建写入&读取plist文件（沙盒）
+
+写入：
+   var paths=NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        var doucumentsDirectory:AnyObject=paths[0]
+        
+        var path = doucumentsDirectory.stringByAppendingPathComponent("sample.plist")
+        
+        var fileManager = NSFileManager.defaultManager()
+        
+        var fileExists:Bool = fileManager.fileExistsAtPath(path)
+        
+        var data:NSMutableDictionary?
+        
+        if fileExists == false{
+            
+            data=NSMutableDictionary()}
+        else{
+            data=NSMutableDictionary(contentsOfFile:path)
+        }
+           data?.setValue("雨天", forKey: "weather")
+        
+        data?.writeToFile(path, atomically: true)
 
 
+//读取数据
+        var paths=NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
+        
+        var doucumentsDirectory:AnyObject=paths[0]
+        
+        var path = doucumentsDirectory.stringByAppendingPathComponent("sample.plist")
+        
+        var data=NSMutableDictionary(contentsOfFile:path)
+    
+        print(path)
+        print(data!["weather2"])
+        label.text=data!["weather"]! as! String
+//读取数据
 
+－－－－－－－－－－
+／／获取时间
+
+ var date = NSDate()
+var timeFormatter = NSDateFormatter()
+timeFormatter.dateFormat = "yyy-MM-dd"
+var strNowTime = timeFormatter.stringFromDate(date) as String

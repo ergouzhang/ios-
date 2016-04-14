@@ -1,0 +1,60 @@
+（1）定义方法：
+
+function functionname () 
+
+…
+end
+
+(2) if判断
+
+if 判断条件 then …
+else …
+end 
+
+（3）for循环
+for var=x,y 
+do…
+
+end
+
+(4) pairs
+table={name=“zhangsan”,age=11}  //新建
+table.name  或者 table[“name”] //调用key值对应的value
+
+//遍历表
+for key,var in pairs(table)
+do
+…
+end
+
+
+(5)数组
+
+arr={1,2,5,”nihao”}
+
+arr[x]   //调用第x个（从1开始）
+
+table.insert(arr,pos,val) //在pos位插入，后面位＋1
+
+－－－－
+（6）类：一个类其实就是一个pairs
+people={}
+
+
+//构造函数
+function people.init(name)    //
+local p ={}
+
+for key,val in pairs(people)   //复制
+do
+p[key]=val
+end
+
+p.name=name       
+return p
+end
+
+
+//调用
+p=people.init(“zhangsan”)   //相当于实例化，此时p是people的实例,后续可以直接通过p.xx调用people的其它方法
+ 
